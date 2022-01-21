@@ -6,9 +6,6 @@
 // task is to call one of these two functions on each value depending on what
 // you think each value is. That is, add either `string_slice` or `string`
 // before the parentheses on each line. If you're right, it will compile!
-
-// I AM NOT DONE
-
 fn string_slice(arg: &str) {
     println!("{}", arg);
 }
@@ -17,14 +14,14 @@ fn string(arg: String) {
 }
 
 fn main() {
-    ???("blue");
-    ???("red".to_string());
-    ???(String::from("hi"));
-    ???("rust is fun!".to_owned());
-    ???("nice weather".into());
-    ???(format!("Interpolation {}", "Station"));
-    ???(&String::from("abc")[0..1]);
-    ???("  hello there ".trim());
-    ???("Happy Monday!".to_string().replace("Mon", "Tues"));
-    ???("mY sHiFt KeY iS sTiCkY".to_lowercase());
+    string_slice("blue"); // blue
+    string("red".to_string()); //red
+    string(String::from("hi")); // hi
+    string("rust is fun!".to_owned()); // rust is fun!
+    string("nice weather".into()); // nice weather
+    string(format!("Interpolation {}", "Station")); // Interpolation Station
+    string_slice(&String::from("abc")[0..1]); // a
+    string_slice("  hello there ".trim()); //hello there
+    string("Happy Monday!".to_string().replace("Mon", "Tues")); // Happy Tuesday!
+    string("mY sHiFt KeY iS sTiCkY".to_lowercase()); // my shift key is sticky
 }
