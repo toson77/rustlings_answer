@@ -37,6 +37,24 @@ impl Default for Person {
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.is_empty() {
+            Person::default()
+        } else {
+            let mut answer: Vec<&str> = s.split(',').collect();
+            if answer.len() == 2 {
+                let name: Result<String, _> = answer[0].parse();
+                let age: Result<u32, _> = answer[1].parse();
+                match (name, age) {
+                    (Ok(name), Ok(age)) => Person {
+                        name: name,
+                        age: age as usize,
+                    },
+                    _ => Person::default(),
+                }
+            } else {
+                Person::default()
+            }
+        }
     }
 }
 
