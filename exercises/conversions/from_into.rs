@@ -33,8 +33,6 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of Person
 // Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
         if s.is_empty() {
@@ -43,6 +41,11 @@ impl From<&str> for Person {
             let mut answer: Vec<&str> = s.split(',').collect();
             if answer.len() == 2 {
                 let name: Result<String, _> = answer[0].parse();
+                let name = match name {
+                    Ok(name_emp) if name_emp.is_empty() => Err("is_empty"),
+                    Ok(name) => Ok(name),
+                    _ => Err("err"),
+                };
                 let age: Result<u32, _> = answer[1].parse();
                 match (name, age) {
                     (Ok(name), Ok(age)) => Person {
